@@ -31,7 +31,13 @@ Enemy.prototype.render = function() {
 
 var Player = function() {
 
+x = 200;
+y = 380;
 this.sprite = 'images/char-boy.png';
+this.x = x;
+this.y = y;
+
+
 };
 
 Player.prototype.update = function(dt){
@@ -41,10 +47,71 @@ Player.prototype.update = function(dt){
 
 Player.prototype.render=function(){
 
+ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 
 };
 
-Player.prototype.handleInput = function(){
+
+Player.prototype.moveup=function(){
+
+if (this.y == 48) {
+    this.y = 380;
+    this.x = (-2) + (Math.floor((Math.random() *5))) * 101;
+} else {
+
+ this.y = (this.y - 83);
+
+}
+
+};
+
+Player.prototype.movedown=function(){
+
+if (this.y !== 380){
+
+   this.y = (this.y + 83);
+   }
+};
+
+Player.prototype.moveright=function(){
+
+if (this.x !== 402){
+
+   this.x = (this.x + 101);
+   }
+
+};
+
+Player.prototype.moveleft=function(){
+
+if (this.x !== -2){
+
+  this.x = (this.x - 101);
+
+  }
+
+};
+
+
+Player.prototype.handleInput = function(keypressed){
+
+switch (keypressed)
+
+{
+
+ case 'up': player.moveup(); break;
+
+ case 'down': player.movedown(); break;
+
+ case 'right': player.moveright(); break;
+
+ case 'left': player.moveleft(); break;
+
+
+ default: console.log("something else pressed");
+
+
+}
 
 
 };
