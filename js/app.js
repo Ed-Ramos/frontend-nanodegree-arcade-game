@@ -9,7 +9,7 @@ var Enemy = function(x,y) {
     this.x = x;
     this.y = y;
     this.vel = (Math.floor((Math.random() *171) + 180 )); //randomly sets velocity from 180 to 350
-
+    enemyScore = 0;
 };
 
 // Update the enemy's position, required method for game
@@ -51,6 +51,8 @@ this.sprite = 'images/char-boy.png';
 this.x = x;
 this.y = y;
 
+playerScore = 0;
+
 
 };
 
@@ -76,6 +78,8 @@ Player.prototype.moveup=function(){
 
 if (this.y == 58) {
 
+    playerScore = playerScore + 1;
+    scoreUpdate();
     player.reset();
 } else {
 
@@ -124,7 +128,8 @@ Player.prototype.checkCollide = function() {
         this.y + 85 >= enemy.y &&
         this.y < enemy.y + 75)
     {
-
+        enemyScore = enemyScore + 1;
+        scoreUpdate();
         player.reset();
     }
 
@@ -154,7 +159,14 @@ switch (keypressed)
 
 };
 
+var scoreUpdate = function(){
 
+ctx.clearRect(0,0, 505, 50);
+ctx.font = "20px Ariel";
+ctx.fillText("Player score:"+ playerScore, 20,30);
+ctx.fillText("Enemy score:" + enemyScore, 300,30);
+
+};
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
