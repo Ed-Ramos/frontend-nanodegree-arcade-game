@@ -6,7 +6,7 @@ Students should use this [rubric](https://www.udacity.com/course/viewer/#!/c-nd0
 For detailed instructions on how to get started, check out this [guide](https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true).
 
 
-___###Game Instructions___
+###Game Instructions
 
 1. The game loads automatically
 2. Use the up, dowm, right, and left arrows to move the player one step at a time
