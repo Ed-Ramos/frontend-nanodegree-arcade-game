@@ -1,3 +1,6 @@
+enemyScore = 0;
+playerScore = 0;
+
 // Enemies our player must avoid
 var Enemy = function(x,y) {
     // Variables applied to each of our instances go here,
@@ -9,7 +12,7 @@ var Enemy = function(x,y) {
     this.x = x;
     this.y = y;
     this.vel = (Math.floor((Math.random() *171) + 180 )); //randomly sets velocity from 180 to 350
-    enemyScore = 0;
+
 };
 
 // Update the enemy's position, required method for game
@@ -45,72 +48,70 @@ Enemy.prototype.render = function() {
 
 var Player = function() {
 
-x = 200;
-y = 390;
-this.sprite = 'images/char-boy.png';
-this.x = x;
-this.y = y;
-
-playerScore = 0;
+    x = 200;
+    y = 390;
+    this.sprite = 'images/char-boy.png';
+    this.x = x;
+    this.y = y;
 
 
 };
 
 Player.prototype.update = function(dt){
 
-
 };
 
 Player.prototype.render=function(){
 
-ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 
 };
 
 Player.prototype.reset=function(){
 
-this.y = 390;
-this.x = (-2) + (Math.floor((Math.random() *5))) * 101;
+    this.y = 390;
+    this.x = (-2) + (Math.floor((Math.random() *5))) * 101;
 
 
-}
+};
+
 Player.prototype.moveup=function(){
 
-if (this.y == 58) {
+    if (this.y == 58) {
 
-    playerScore = playerScore + 1;
-    scoreUpdate();
-    player.reset();
-} else {
+        playerScore = playerScore + 1;
+        scoreUpdate();
+        this.reset();
+   }  else {
 
- this.y = (this.y - 83);
+        this.y = (this.y - 83);
 
-}
+   }
 
 };
 
 Player.prototype.movedown=function(){
 
-if (this.y !== 390){
+    if (this.y !== 390){
 
-   this.y = (this.y + 83);
+        this.y = (this.y + 83);
    }
 };
 
 Player.prototype.moveright=function(){
 
-if (this.x !== 402){
+    if (this.x !== 402){
 
-   this.x = (this.x + 101);
+        this.x = (this.x + 101);
    }
 
 };
 
 Player.prototype.moveleft=function(){
 
-if (this.x !== -2){
+    if (this.x !== -2){
 
-  this.x = (this.x - 101);
+        this.x = (this.x - 101);
 
   }
 
@@ -126,11 +127,10 @@ Player.prototype.checkCollide = function() {
     if (this.x + 66 >= enemy.x &&
         this.x < enemy.x + 101 &&
         this.y + 85 >= enemy.y &&
-        this.y < enemy.y + 75)
-    {
+        this.y < enemy.y + 75) {
         enemyScore = enemyScore + 1;
         scoreUpdate();
-        player.reset();
+        this.reset();
     }
 
   }
@@ -140,31 +140,37 @@ Player.prototype.checkCollide = function() {
 
 Player.prototype.handleInput = function(keypressed){
 
-switch (keypressed)
+    switch (keypressed)
 
-{
+    {
 
- case 'up': player.moveup(); break;
+       case 'up':
+            player.moveup();
+            break;
 
- case 'down': player.movedown(); break;
+       case 'down':
+            player.movedown();
+            break;
 
- case 'right': player.moveright(); break;
+       case 'right':
+            player.moveright();
+            break;
 
- case 'left': player.moveleft(); break;
+       case 'left':
+            player.moveleft();
+            break;
 
 
-
-}
-
+   }
 
 };
 
 var scoreUpdate = function(){
 
-ctx.clearRect(0,0, 505, 50);
-ctx.font = "20px Ariel";
-ctx.fillText("Player score:"+ playerScore, 20,30);
-ctx.fillText("Enemy score:" + enemyScore, 300,30);
+    ctx.clearRect(0,0, 505, 50);
+    ctx.font = "20px Ariel";
+    ctx.fillText("Player score:"+ playerScore, 20,30);
+    ctx.fillText("Enemy score:" + enemyScore, 300,30);
 
 };
 
@@ -186,7 +192,6 @@ document.addEventListener('keyup', function(e) {
         39: 'right',
         40: 'down'
     };
-
 
     player.handleInput(allowedKeys[e.keyCode]);
 });
