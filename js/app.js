@@ -145,19 +145,19 @@ Player.prototype.handleInput = function(keypressed){
     {
 
        case 'up':
-            player.moveup();
+            this.moveup();
             break;
 
        case 'down':
-            player.movedown();
+            this.movedown();
             break;
 
        case 'right':
-            player.moveright();
+            this.moveright();
             break;
 
        case 'left':
-            player.moveleft();
+            this.moveleft();
             break;
 
 
